@@ -19,6 +19,6 @@ jobs:
       - name: Create Bucket
         run: | 
           aws cloudformation deploy \
-            --stack-name cloud-atlas-data-lake \
+            --stack-name cloud-atlas-glue-database-camara \
             --template-file template.yaml \
             --parameter-overrides file://parameters.json

@@ -12,3 +12,15 @@ Resources:
       DatabaseInput:
         Name: !Ref DatabaseName
         Description: Database to hold camara data
+  Crawler:
+    Type: AWS::Glue::Crawler
+    Properties:
+      DatabaseName: !Ref DatabaseName
+      Description: Crawler to get camara data
+      Name: CrawlerCamara
+      Role: arn:aws:iam::885248014373:role/cloudatlas-glue-role
+      Schedule:
+        ScheduleExpression: cron(15 12 * * ? *)
+      Targets:
+        S3Targets: 
+          - Path: s3://cloudatlas-datalake/raw/camara/proposicoes/json/
